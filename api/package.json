@@ -1,7 +1,6 @@
 {
   "name": "restapi",
   "version": "1.0.0",
-  "type": "module",
   "description": "rest api in nodejs typescript with mongodb",
   "main": "server.ts",
   "scripts": {
