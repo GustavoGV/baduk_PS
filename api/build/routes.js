@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 var express_1 = require("express");
+var CreateUser_1 = require("./useCases/CreateUser");
 var router = (0, express_1.Router)();
 exports.router = router;
 router.post('/users', function (request, response) {
-    return response.status(201).send();
+    return CreateUser_1.createUserController.handle(request, response);
 });
