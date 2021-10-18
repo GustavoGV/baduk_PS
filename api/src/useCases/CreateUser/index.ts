@@ -1,15 +1,15 @@
-import { MongoUsersRepository } from "../../repositories/implementations/MongoUsersRepository";
-import { CreateUserController } from "./CreateUserController";
-import { CreateUserUseCase } from "./CreateUserUseCase";
+import { MongoUsersRepository } from '../../repositories/implementations/MongoUsersRepository';
+import { CreateUserController } from './CreateUserController';
+import { CreateUserUseCase } from './CreateUserUseCase';
 
-const mongoUsersRepository = new MongoUsersRepository()
+const mongoUsersRepository = new MongoUsersRepository();
 
 const createUserUseCase = new CreateUserUseCase(
-    mongoUsersRepository,
-)
+  mongoUsersRepository,
+);
 
 const createUserController = new CreateUserController(
-    createUserUseCase
-)
+  createUserUseCase,
+);
 
-export { createUserUseCase, createUserController}
+export { createUserUseCase, createUserController };
