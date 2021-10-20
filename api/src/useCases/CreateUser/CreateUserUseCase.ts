@@ -10,13 +10,13 @@ export class CreateUserUseCase {
   async execute(data: ICreateUserRequestDTO) {
     const mailAlreadyUsed = await this.usersRepository.findByEmail(data.email);
     const phoneAlreadyUsed = await this.usersRepository.findByPhone(data.phone);
-    /*
+    
         if(mailAlreadyUsed || phoneAlreadyUsed){
-            throw new Error('User with this mail or phone arealdy exists')
+            throw new Error('Usario com esse telefone ou email ja existe')
         }
-        */
-    const user = new User(data);
-
-    await this.usersRepository.save(user);
+        else{
+          const user = new User(data);
+          await this.usersRepository.save(user);
+        }
   }
 }

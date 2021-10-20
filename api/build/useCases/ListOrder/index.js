@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.listOrderController = exports.listOrderUseCase = void 0;
+var MongoOrdersRepository_1 = require("../../repositories/implementations/MongoOrdersRepository");
+var ListOrderController_1 = require("./ListOrderController");
+var ListOrderUseCase_1 = require("./ListOrderUseCase");
+var mongoOrdersRepository = new MongoOrdersRepository_1.MongoOrdersRepository();
+var listOrderUseCase = new ListOrderUseCase_1.ListOrderUseCase(mongoOrdersRepository);
+exports.listOrderUseCase = listOrderUseCase;
+var listOrderController = new ListOrderController_1.ListOrderController(listOrderUseCase);
+exports.listOrderController = listOrderController;

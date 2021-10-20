@@ -37,27 +37,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MongoUsersRepository = void 0;
+var iMongoUsers_1 = require("../../entities/iMongoUsers");
 var MongoUsersRepository = /** @class */ (function () {
     function MongoUsersRepository() {
     }
     MongoUsersRepository.prototype.findByEmail = function (email) {
         return __awaiter(this, void 0, void 0, function () {
+            var MailSearch;
             return __generator(this, function (_a) {
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, iMongoUsers_1.MUser.findOne({ email: email })];
+                    case 1:
+                        MailSearch = _a.sent();
+                        return [2 /*return*/, MailSearch];
+                }
             });
         });
     };
     MongoUsersRepository.prototype.save = function (user) {
         return __awaiter(this, void 0, void 0, function () {
+            var mongoDoc;
             return __generator(this, function (_a) {
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        mongoDoc = new iMongoUsers_1.MUser({
+                            name: user.name,
+                            email: user.email,
+                            password: user.password,
+                            phone: user.phone,
+                        });
+                        return [4 /*yield*/, mongoDoc.save()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     MongoUsersRepository.prototype.findByPhone = function (phone) {
         return __awaiter(this, void 0, void 0, function () {
+            var PhoneSearch;
             return __generator(this, function (_a) {
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, iMongoUsers_1.MUser.findOne({ phone: phone })];
+                    case 1:
+                        PhoneSearch = _a.sent();
+                        return [2 /*return*/, PhoneSearch];
+                }
             });
         });
     };

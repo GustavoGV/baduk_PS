@@ -3,8 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 var express_1 = require("express");
 var CreateUser_1 = require("./useCases/CreateUser");
+var CreateProduct_1 = require("./useCases/CreateProduct");
+var CreateOrder_1 = require("./useCases/CreateOrder");
+var ListOrder_1 = require("./useCases/ListOrder");
 var router = (0, express_1.Router)();
 exports.router = router;
-router.post('/users', function (request, response) {
-    return CreateUser_1.createUserController.handle(request, response);
-});
+router.post('/orders', function (request, response) { return CreateOrder_1.createOrderController.handle(request, response); });
+router.post('/products', function (request, response) { return CreateProduct_1.createProductController.handle(request, response); });
+router.post('/customers', function (request, response) { return CreateUser_1.createUserController.handle(request, response); });
+router.get('/orders', function (request, response) { return ListOrder_1.listOrderController.handle(request, response); });
+router.get('/products', function (request, response) { return CreateUser_1.createUserController.handle(request, response); });
+router.get('/customers', function (request, response) { return CreateUser_1.createUserController.handle(request, response); });

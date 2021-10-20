@@ -1,11 +1,12 @@
-import { Schema, model, connect } from 'mongoose';
 import { User } from '../../entities/User';
-import { MUser } from '../iMongo';
+import { MUser } from '../../entities/iMongoUsers';
+import { Model, model } from 'mongoose'
 import { IUsersRepository } from '../IUsersRepository';
 
 export class MongoUsersRepository implements IUsersRepository {
-  async findByEmail(email: string): Promise<void> {
-
+  async findByEmail(email: string): Promise<any> { //era para ser Promise<User> mas o model do Mongoose é de um tipo diferente... 
+    let MailSearch = await MUser.findOne({email: email})
+    return MailSearch
   }
 
   async save(user: User): Promise<void> {
@@ -18,7 +19,8 @@ export class MongoUsersRepository implements IUsersRepository {
     await mongoDoc.save();
   }
 
-  async findByPhone(phone: string): Promise<void> {
-
+  async findByPhone(phone: string): Promise<any> {
+    let PhoneSearch = await MUser.findOne({phone: phone})
+    return PhoneSearch
   }
 }

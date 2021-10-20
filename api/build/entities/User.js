@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-var uuidv4_1 = require("uuidv4"); //biblioteca para criação de IDs unicos
+var uuidv4_1 = require("uuidv4"); // biblioteca para criação de IDs unicos
 var User = /** @class */ (function () {
     function User(props) {
         this.name = props.name;

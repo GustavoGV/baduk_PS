@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createProductController = exports.createProductUseCase = void 0;
+var MongoProductsRepository_1 = require("../../repositories/implementations/MongoProductsRepository");
+var CreateProductController_1 = require("./CreateProductController");
+var CreateProductUseCase_1 = require("./CreateProductUseCase");
+var mongoProductsRepository = new MongoProductsRepository_1.MongoProductsRepository();
+var createProductUseCase = new CreateProductUseCase_1.CreateProductUseCase(mongoProductsRepository);
+exports.createProductUseCase = createProductUseCase;
+var createProductController = new CreateProductController_1.CreateProductController(createProductUseCase);
+exports.createProductController = createProductController;
