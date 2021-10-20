@@ -37,22 +37,129 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListOrderUseCase = void 0;
-var Order_1 = require("../../entities/Order");
 var ListOrderUseCase = /** @class */ (function () {
     function ListOrderUseCase(ordersRepository) {
         this.ordersRepository = ordersRepository;
     }
     ListOrderUseCase.prototype.execute = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user;
+            var acimaDe, abaixoDe, inicioPeriodo, finalPeriodo, page, contentsPerPage, ids, result, result, result, result, result, result, result, result, result, result, result, result, result, result, result, result, result, result, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        user = new Order_1.Order(data);
-                        return [4 /*yield*/, this.ordersRepository.save(user)];
+                        acimaDe = data.acimaDe, abaixoDe = data.abaixoDe, inicioPeriodo = data.inicioPeriodo, finalPeriodo = data.finalPeriodo, page = data.page, contentsPerPage = data.contentsPerPage, ids = data.ids;
+                        if (!(data.abaixoDe && data.acimaDe)) return [3 /*break*/, 15];
+                        if (!(data.inicioPeriodo && data.finalPeriodo)) return [3 /*break*/, 5];
+                        if (!data.ids) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.ordersRepository.findByRangeValuesByRangeTimeByIds(acimaDe, abaixoDe, inicioPeriodo, finalPeriodo, page, contentsPerPage, ids)];
                     case 1:
-                        _a.sent();
-                        return [2 /*return*/];
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 2: return [4 /*yield*/, this.ordersRepository.findByRangeValuesByRangeTime(acimaDe, abaixoDe, inicioPeriodo, finalPeriodo, page, contentsPerPage)];
+                    case 3:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 4: return [3 /*break*/, 14];
+                    case 5:
+                        if (!data.inicioPeriodo) return [3 /*break*/, 10];
+                        if (!data.ids) return [3 /*break*/, 7];
+                        return [4 /*yield*/, this.ordersRepository.findByRangeValuesByStartTimeByIds(acimaDe, abaixoDe, inicioPeriodo, page, contentsPerPage, ids)];
+                    case 6:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 7: return [4 /*yield*/, this.ordersRepository.findByRangeValuesByStartTime(acimaDe, abaixoDe, inicioPeriodo, page, contentsPerPage)];
+                    case 8:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 9: return [3 /*break*/, 14];
+                    case 10:
+                        if (!data.ids) return [3 /*break*/, 12];
+                        return [4 /*yield*/, this.ordersRepository.findByRangeValuesByEndTimeByIds(acimaDe, abaixoDe, finalPeriodo, page, contentsPerPage, ids)];
+                    case 11:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 12: return [4 /*yield*/, this.ordersRepository.findByRangeValuesByEndTime(acimaDe, abaixoDe, finalPeriodo, page, contentsPerPage)];
+                    case 13:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 14: return [3 /*break*/, 47];
+                    case 15:
+                        if (!data.abaixoDe) return [3 /*break*/, 30];
+                        if (!(data.inicioPeriodo && data.finalPeriodo)) return [3 /*break*/, 20];
+                        if (!data.ids) return [3 /*break*/, 17];
+                        return [4 /*yield*/, this.ordersRepository.findByLowerValuesByRangeTimeByIds(abaixoDe, inicioPeriodo, finalPeriodo, page, contentsPerPage, ids)];
+                    case 16:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 17: return [4 /*yield*/, this.ordersRepository.findByLowerValuesByRangeTime(abaixoDe, inicioPeriodo, finalPeriodo, page, contentsPerPage)];
+                    case 18:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 19: return [3 /*break*/, 29];
+                    case 20:
+                        if (!data.inicioPeriodo) return [3 /*break*/, 25];
+                        if (!data.ids) return [3 /*break*/, 22];
+                        return [4 /*yield*/, this.ordersRepository.findByLowerValuesByStartTimeByIds(abaixoDe, inicioPeriodo, page, contentsPerPage, ids)];
+                    case 21:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 22: return [4 /*yield*/, this.ordersRepository.findByLowerValuesByStartTime(abaixoDe, inicioPeriodo, page, contentsPerPage)];
+                    case 23:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 24: return [3 /*break*/, 29];
+                    case 25:
+                        if (!data.ids) return [3 /*break*/, 27];
+                        return [4 /*yield*/, this.ordersRepository.findByLowerValuesByEndTimeByIds(abaixoDe, finalPeriodo, page, contentsPerPage, ids)];
+                    case 26:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 27: return [4 /*yield*/, this.ordersRepository.findByLowerValuesByEndTime(abaixoDe, finalPeriodo, page, contentsPerPage)];
+                    case 28:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 29: return [3 /*break*/, 47];
+                    case 30:
+                        if (!data.acimaDe) return [3 /*break*/, 45];
+                        if (!(data.inicioPeriodo && data.finalPeriodo)) return [3 /*break*/, 35];
+                        if (!data.ids) return [3 /*break*/, 32];
+                        return [4 /*yield*/, this.ordersRepository.findByUpperValuesByRangeTimeByIds(acimaDe, inicioPeriodo, finalPeriodo, page, contentsPerPage, ids)];
+                    case 31:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 32: return [4 /*yield*/, this.ordersRepository.findByUpperValuesByRangeTime(acimaDe, inicioPeriodo, finalPeriodo, page, contentsPerPage)];
+                    case 33:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 34: return [3 /*break*/, 44];
+                    case 35:
+                        if (!data.inicioPeriodo) return [3 /*break*/, 40];
+                        if (!data.ids) return [3 /*break*/, 37];
+                        return [4 /*yield*/, this.ordersRepository.findByUpperValuesByStartTimeByIds(acimaDe, inicioPeriodo, page, contentsPerPage, ids)];
+                    case 36:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 37: return [4 /*yield*/, this.ordersRepository.findByUpperValuesByStartTime(acimaDe, inicioPeriodo, page, contentsPerPage)];
+                    case 38:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 39: return [3 /*break*/, 44];
+                    case 40:
+                        if (!data.ids) return [3 /*break*/, 42];
+                        return [4 /*yield*/, this.ordersRepository.findByUpperValuesByEndTimeByIds(acimaDe, finalPeriodo, page, contentsPerPage, ids)];
+                    case 41:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 42: return [4 /*yield*/, this.ordersRepository.findByUpperValuesByEndTimeBy(acimaDe, finalPeriodo, page, contentsPerPage)];
+                    case 43:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 44: return [3 /*break*/, 47];
+                    case 45: return [4 /*yield*/, this.ordersRepository.findByIds(ids)];
+                    case 46:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 47: return [2 /*return*/];
                 }
             });
         });

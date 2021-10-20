@@ -36,44 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListOrderController = void 0;
-var ListOrderController = /** @class */ (function () {
-    function ListOrderController(listOrdersUseCase) {
-        this.listOrdersUseCase = listOrdersUseCase;
+exports.ListUserUseCase = void 0;
+var User_1 = require("../../entities/User");
+var ListUserUseCase = /** @class */ (function () {
+    function ListUserUseCase(usersRepository) {
+        this.usersRepository = usersRepository;
     }
-    ListOrderController.prototype.handle = function (request, response) {
+    ListUserUseCase.prototype.execute = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, acimaDe, abaixoDe, inicioPeriodo, finalPeriodo, page, contentsPerPage, ids, err_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = request.body, acimaDe = _a.acimaDe, abaixoDe = _a.abaixoDe, inicioPeriodo = _a.inicioPeriodo, finalPeriodo = _a.finalPeriodo, page = _a.page, contentsPerPage = _a.contentsPerPage, ids = _a.ids;
-                        _b.label = 1;
+            var mailAlreadyUsed, phoneAlreadyUsed, user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.usersRepository.findByEmail(data.email)];
                     case 1:
-                        _b.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.listOrdersUseCase.execute({
-                                acimaDe: acimaDe,
-                                abaixoDe: abaixoDe,
-                                inicioPeriodo: inicioPeriodo,
-                                finalPeriodo: finalPeriodo,
-                                page: page,
-                                contentsPerPage: contentsPerPage,
-                                ids: ids
-                            })];
+                        mailAlreadyUsed = _a.sent();
+                        return [4 /*yield*/, this.usersRepository.findByPhone(data.phone)];
                     case 2:
-                        _b.sent();
-                        return [2 /*return*/, response.status(201).send()];
+                        phoneAlreadyUsed = _a.sent();
+                        if (!(mailAlreadyUsed || phoneAlreadyUsed)) return [3 /*break*/, 3];
+                        throw new Error('Usario com esse telefone ou email ja existe');
                     case 3:
-                        err_1 = _b.sent();
-                        console.log(err_1);
-                        return [2 /*return*/, response.status(400).json({
-                                message: 'Unexpected error on Order creation',
-                            })];
-                    case 4: return [2 /*return*/];
+                        user = new User_1.User(data);
+                        return [4 /*yield*/, this.usersRepository.save(user)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5: return [2 /*return*/];
                 }
             });
         });
     };
-    return ListOrderController;
+    return ListUserUseCase;
 }());
-exports.ListOrderController = ListOrderController;
+exports.ListUserUseCase = ListUserUseCase;

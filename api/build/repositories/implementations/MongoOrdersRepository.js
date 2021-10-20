@@ -41,19 +41,6 @@ var iMongoUsers_1 = require("../../entities/iMongoUsers");
 var MongoOrdersRepository = /** @class */ (function () {
     function MongoOrdersRepository() {
     }
-    MongoOrdersRepository.prototype.findByEmail = function (email) {
-        return __awaiter(this, void 0, void 0, function () {
-            var MailSearch;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, iMongoUsers_1.MUser.findOne({ email: email })];
-                    case 1:
-                        MailSearch = _a.sent();
-                        return [2 /*return*/, MailSearch];
-                }
-            });
-        });
-    };
     MongoOrdersRepository.prototype.save = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var mongoDoc;
@@ -76,16 +63,201 @@ var MongoOrdersRepository = /** @class */ (function () {
             });
         });
     };
-    MongoOrdersRepository.prototype.findByPhone = function (phone) {
+    /*
+    async findByRangeValues(acimaDe: number | null, abaixoDe: number): Promise<any>{
+      const result = await MUser.find({
+        totalPrice : { $gte :  acimaDe,  $lte :  abaixoDe}
+      })
+      return result
+    }
+    async findByRangeTime(inicioPeriodo: string | null | any, finalPeriodo: string):  Promise<any>{
+      let inicio: string = inicioPeriodo[0] + inicioPeriodo[1] + inicioPeriodo[2] + inicioPeriodo[3] + '-' + inicioPeriodo[6] + inicioPeriodo[7] + '-' + inicioPeriodo[4] + inicioPeriodo[5]
+      let final: string = finalPeriodo[0] + finalPeriodo[1] + finalPeriodo[2] + finalPeriodo[3] + '-' + finalPeriodo[6] + finalPeriodo[7] + '-' + finalPeriodo[4] + finalPeriodo[5]
+      const result = await MUser.find({
+        createdAt : { $gte : new Date(inicio),  $lte : new Date(final)}
+      })
+      return result
+    }
+    async findByUpperValues(acimaDe: number | null): Promise<any>{
+      const result = await MUser.find({
+        totalPrice : { $gte :  acimaDe}
+      })
+      return result
+    }
+    async findByLowerValues(abaixoDe: number | null): Promise<any>{
+      const result = await MUser.find({
+        totalPrice : { $lte :  abaixoDe}
+      })
+      return result
+    }
+    async findByEndTime(finalPeriodo: number | null): Promise<any>{
+  
+    }
+    async findByStartTime(inicioPeriodo: number | null): Promise<any>{
+  
+    }
+    async findByIds(ids: Array<string> | null): Promise<any>{
+    }
+    */
+    MongoOrdersRepository.prototype.findByRangeValuesByRangeTime = function (acimaDe, abaixoDe, inicioPeriodo, finalPeriodo) {
         return __awaiter(this, void 0, void 0, function () {
-            var PhoneSearch;
+            var inicio, final, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, iMongoUsers_1.MUser.findOne({ phone: phone })];
+                    case 0:
+                        inicio = inicioPeriodo[0] + inicioPeriodo[1] + inicioPeriodo[2] + inicioPeriodo[3] + '-' + inicioPeriodo[6] + inicioPeriodo[7] + '-' + inicioPeriodo[4] + inicioPeriodo[5];
+                        final = finalPeriodo[0] + finalPeriodo[1] + finalPeriodo[2] + finalPeriodo[3] + '-' + finalPeriodo[6] + finalPeriodo[7] + '-' + finalPeriodo[4] + finalPeriodo[5];
+                        return [4 /*yield*/, iMongoUsers_1.MUser.find({
+                                totalPrice: { $gte: acimaDe, $lte: abaixoDe }
+                            }).find({
+                                createdAt: {
+                                    $gte: new Date(inicio),
+                                    $lt: new Date(final)
+                                }
+                            })];
                     case 1:
-                        PhoneSearch = _a.sent();
-                        return [2 /*return*/, PhoneSearch];
+                        result = _a.sent();
+                        return [2 /*return*/, result];
                 }
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByRangeValuesByRangeTimeByIds = function (acimaDe, abaixoDe, inicioPeriodo, finalPeriodo, page, contentsPerPage, ids) {
+        return __awaiter(this, void 0, void 0, function () {
+            var result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, iMongoUsers_1.MUser.find({
+                            totalPrice: { $gte: acimaDe, $lte: abaixoDe }
+                        }).find({
+                            createdAt: {
+                                $gte: new Date(inicioPeriodo),
+                                $lt: new Date(finalPeriodo)
+                            }
+                        })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                }
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByRangeValuesByStartTimeByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByRangeValuesByStartTime = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByRangeValuesByEndTimeByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByRangeValuesByEndTime = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByLowerValuesByRangeTimeByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByLowerValuesByRangeTime = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByLowerValuesByStartTimeByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByLowerValuesByStartTime = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByLowerValuesByEndTimeByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByLowerValuesByEndTime = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByUpperValuesByRangeTimeByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByUpperValuesByRangeTime = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByUpperValuesByStartTimeByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByUpperValuesByStartTime = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByUpperValuesByEndTimeByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByUpperValuesByEndTimeBy = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    MongoOrdersRepository.prototype.findByIds = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
             });
         });
     };

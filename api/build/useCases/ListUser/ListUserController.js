@@ -36,29 +36,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListOrderController = void 0;
-var ListOrderController = /** @class */ (function () {
-    function ListOrderController(listOrdersUseCase) {
-        this.listOrdersUseCase = listOrdersUseCase;
+exports.ListUserController = void 0;
+var ListUserController = /** @class */ (function () {
+    function ListUserController(listUsersUseCase) {
+        this.listUsersUseCase = listUsersUseCase;
     }
-    ListOrderController.prototype.handle = function (request, response) {
+    ListUserController.prototype.handle = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, acimaDe, abaixoDe, inicioPeriodo, finalPeriodo, page, contentsPerPage, ids, err_1;
+            var _a, name, email, password, phone, err_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = request.body, acimaDe = _a.acimaDe, abaixoDe = _a.abaixoDe, inicioPeriodo = _a.inicioPeriodo, finalPeriodo = _a.finalPeriodo, page = _a.page, contentsPerPage = _a.contentsPerPage, ids = _a.ids;
+                        _a = request.body, name = _a.name, email = _a.email, password = _a.password, phone = _a.phone;
                         _b.label = 1;
                     case 1:
                         _b.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.listOrdersUseCase.execute({
-                                acimaDe: acimaDe,
-                                abaixoDe: abaixoDe,
-                                inicioPeriodo: inicioPeriodo,
-                                finalPeriodo: finalPeriodo,
-                                page: page,
-                                contentsPerPage: contentsPerPage,
-                                ids: ids
+                        return [4 /*yield*/, this.listUsersUseCase.execute({
+                                name: name,
+                                email: email,
+                                password: password,
+                                phone: phone,
                             })];
                     case 2:
                         _b.sent();
@@ -67,13 +64,13 @@ var ListOrderController = /** @class */ (function () {
                         err_1 = _b.sent();
                         console.log(err_1);
                         return [2 /*return*/, response.status(400).json({
-                                message: 'Unexpected error on Order creation',
+                                message: 'Unexpected error on User creation',
                             })];
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    return ListOrderController;
+    return ListUserController;
 }());
-exports.ListOrderController = ListOrderController;
+exports.ListUserController = ListUserController;

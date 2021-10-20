@@ -31,7 +31,7 @@ export interface IOrdersRepository {
     findByUpperValuesByStartTime(acimaDe: number | null, inicioPeriodo: string | null, page: number | null, contentsPerpage: number | null): Promise<any>
     findByUpperValuesByEndTimeByIds(acimaDe: number | null, finalPeriodo: string | null, page: number | null, contentsPerpage: number | null, ids: Array<string> | null): Promise<any>
     findByUpperValuesByEndTimeBy(acimaDe: number | null, finalPeriodo: string | null, page: number | null, contentsPerpage: number | null): Promise<any>
-    
+    findByIds(ids: Array<string> | null): Promise<any>
     save(user: Order): Promise<void>
 
 }
